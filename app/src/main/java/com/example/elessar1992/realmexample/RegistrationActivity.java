@@ -3,21 +3,19 @@ package com.example.elessar1992.realmexample;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.elessar1992.realmexample.Database.realm;
 import com.example.elessar1992.realmexample.Model.User;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
 /**
@@ -36,10 +34,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private EditText password;
     private Button register;
     private Button goLogin;
-    private User user;
+    private Button delete;
     private TextView display;
 
-    Realm myrealm;
+    private Realm myrealm;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,6 +59,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
         goLogin = (Button) findViewById(R.id.gologin);
+        delete = (Button) findViewById(R.id.delete);
         display = (TextView) findViewById(R.id.display);
 
     }
@@ -69,16 +68,16 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     {
         goLogin.setOnClickListener(this);
         register.setOnClickListener(this);
+        delete.setOnClickListener(this);
 
     }
 
     private void initObjects()
     {
         myrealm = Realm.getDefaultInstance();
-        myrealm.beginTransaction();
-        myrealm.deleteAll();
-        myrealm.commitTransaction();
-        user = new User();
+        //myrealm.beginTransaction();
+        //myrealm.deleteAll();
+        //myrealm.commitTransaction();
 
     }
 
@@ -93,13 +92,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.register:
                 saveData();
-                readData();
+                Toast.makeText(this, "Data Added", Toast.LENGTH_SHORT).show();
+                //readData();
                 break;
 
             case R.id.gologin:
                 Intent showAllUsers = new Intent(getApplicationContext(), ShowAllUserActivity.class);
                 startActivity(showAllUsers);
                 break;
+
+            case R.id.delete:
+                deleteAll();
+                Toast.makeText(this, "Data Deleted", Toast.LENGTH_SHORT).show();
 
 
         }
@@ -130,6 +134,14 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 Log.d(Tag, "onError");
             }
         });
+    }
+
+    public void deleteAll()
+    {
+        RealmResults<User> users = myrealm.where(User.class).findAll();
+        myrealm.beginTransaction();
+        users.deleteAllFromRealm();
+        myrealm.commitTransaction();
     }
 
     public void readData()

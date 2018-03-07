@@ -45,8 +45,14 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:text="login"
+        android:text="Show All Users"
         android:id="@+id/gologin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="Delete"
+        android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

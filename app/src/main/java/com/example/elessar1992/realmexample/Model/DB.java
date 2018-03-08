@@ -11,7 +11,8 @@ public class DB extends RealmObject
 {
     public String mytitle;
 
-    public String getMytitle() {
+    public String getMytitle()
+    {
         return mytitle;
     }
 

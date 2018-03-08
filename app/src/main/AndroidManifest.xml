@@ -22,6 +22,7 @@
         <activity android:name=".ShowAllUserActivity"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Database.realm"></activity>
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

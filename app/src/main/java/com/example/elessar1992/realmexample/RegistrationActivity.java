@@ -35,6 +35,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     private Button register;
     private Button goLogin;
     private Button delete;
+    private Button rlogin;
     private TextView display;
 
     private Realm myrealm;
@@ -59,6 +60,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         password = (EditText) findViewById(R.id.password);
         register = (Button) findViewById(R.id.register);
         goLogin = (Button) findViewById(R.id.gologin);
+        rlogin = (Button) findViewById(R.id.rLogin);
         delete = (Button) findViewById(R.id.delete);
         display = (TextView) findViewById(R.id.display);
 
@@ -69,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         goLogin.setOnClickListener(this);
         register.setOnClickListener(this);
         delete.setOnClickListener(this);
+        rlogin.setOnClickListener(this);
 
     }
 
@@ -105,10 +108,39 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 deleteAll();
                 Toast.makeText(this, "Data Deleted", Toast.LENGTH_SHORT).show();
 
-
+            case R.id.rLogin:
+                Intent gotoLogin = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(gotoLogin);
+                break;
         }
 
     }
+
+
+    /*public void vertification()
+    {
+       if(checkUser(email.getText().toString().trim(), password.getText().toString().trim()))
+        {
+           Intent MainPage = new Intent(RegistrationActivity.this, MainActivity.class);
+            startActivity(MainPage);
+        }
+        else
+       {
+           Toast.makeText(this, "Username or Password is Wrong", Toast.LENGTH_SHORT).show();
+       }
+    }*/
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void saveData()
     {
@@ -144,6 +176,20 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         myrealm.commitTransaction();
     }
 
+    public boolean checkUser(String email, String password)
+    {
+        RealmResults<User> users = myrealm.where(User.class).findAll();
+        for(User myusers:users)
+        {
+            if(email.equals(myusers.getEmail()) && password.equals(myusers.getPassword()))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void readData()
     {
 
@@ -164,6 +210,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         }
         display.setText(data);
     }
+
+
 
 
     @Override

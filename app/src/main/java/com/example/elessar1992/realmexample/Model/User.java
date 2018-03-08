@@ -2,6 +2,7 @@ package com.example.elessar1992.realmexample.Model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.RealmResults;
 import io.realm.annotations.LinkingObjects;
 import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.RealmClass;
@@ -19,6 +20,8 @@ public class User extends RealmObject
     public String username;
     public String email;
     public String password;
+
+    public RealmList<DB> dbs;
 
 
     public int getId()
@@ -81,5 +84,12 @@ public class User extends RealmObject
         this.password = password;
     }
 
+    public RealmList<DB> getDbs() {
+        return dbs;
+    }
+
+    public void setDbs(RealmList<DB> dbs) {
+        this.dbs = dbs;
+    }
 }
 

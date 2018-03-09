@@ -9,9 +9,11 @@ import io.realm.RealmConfiguration;
  * Created by elessar1992 on 2/27/18.
  */
 
-public class MyApplication extends Application  {
+public class MyApplication extends Application
+{
     @Override
-    public void onCreate() {
+    public void onCreate()
+    {
         super.onCreate();
         // The default Realm file is "default.realm" in Context.getFilesDir();
         // we'll change it to "myrealm.realm"

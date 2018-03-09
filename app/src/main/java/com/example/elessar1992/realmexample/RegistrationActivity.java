@@ -107,6 +107,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             case R.id.delete:
                 deleteAll();
                 Toast.makeText(this, "Data Deleted", Toast.LENGTH_SHORT).show();
+                break;
 
             case R.id.rLogin:
                 Intent gotoLogin = new Intent(getApplicationContext(), LoginActivity.class);
@@ -144,7 +145,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     public void saveData()
     {
-        myrealm.executeTransactionAsync(new Realm.Transaction() {
+        myrealm.executeTransactionAsync(new Realm.Transaction()
+        {
             @Override
             public void execute(Realm bgrealm) {
                 User user = bgrealm.createObject(User.class);

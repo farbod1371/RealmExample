@@ -20,8 +20,8 @@ public class User extends RealmObject
     public String username;
     public String email;
     public String password;
+    public String eventTitle;
 
-    public RealmList<DB> dbs;
 
 
     public int getId()
@@ -84,12 +84,17 @@ public class User extends RealmObject
         this.password = password;
     }
 
-    public RealmList<DB> getDbs() {
-        return dbs;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
-    public void setDbs(RealmList<DB> dbs) {
-        this.dbs = dbs;
+    public void setEventTitle(String eventTitle) {
+        this.eventTitle = eventTitle;
+    }
+
+    public String toString()
+    {
+        return "Name" + username + '\'' + "Event" + eventTitle + ')';
     }
 }
 

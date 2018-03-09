@@ -18,6 +18,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:text="query save"
+        android:id="@+id/qSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="Show query"
+        android:id="@+id/qShow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 
 
 </LinearLayout>
